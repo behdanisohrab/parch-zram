@@ -33,6 +33,5 @@ sudo ./install.sh
 
 You can donate to me for this project in IRR from the link below:
 
-<div class="daramet-embed-donate" id="1208"><script src="https://daramet.com/embed/script.js"></script></div>
 
-
+[![Donate!](https://panel.daramet.com/static/media/daramet-coffee-donate.91915073278a21c30769.png "Donation image")](https://daramet.com/sohrabbehdani)
