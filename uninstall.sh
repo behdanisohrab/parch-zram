@@ -1,8 +1,9 @@
-# Parch Zram uninstall
+#!/bin/bash
 
-#sudo vi /etc/rc.local -c 'normal /zram' -c 'normal dd' -c ':wq'
-sudo systemctl stop zram.service
-sudo systemctl disable zram.service
-sudo rm -rf /etc/systemd/system/zram.service
-sudo rm -rf /usr/bin/zram.sh
+set -euo pipefail
 
+sudo systemctl stop parch-zram.service 2>/dev/null || true
+sudo systemctl disable parch-zram.service 2>/dev/null || true
+sudo rm -f /etc/systemd/system/parch-zram.service
+sudo rm -f /usr/bin/parch-zram
+sudo systemctl daemon-reload

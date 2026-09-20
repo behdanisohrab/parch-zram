@@ -1,30 +1,14 @@
-# Parch Zram
-#An automated script to install and setup zram on your Parch Linux or any other Arch-Based Linux distribution
+#!/bin/bash
 
-#Download the script and copy to /usr/bin/ folder
-sudo wget -O /usr/bin/zram.sh https://raw.githubusercontent.com/behdanisohrab/parch-zram/master/zram.sh
+set -euo pipefail
 
-#make file executable
-sudo chmod +x /usr/bin/zram.sh
+REPO_URL="https://raw.githubusercontent.com/behdanisohrab/parch-zram/master"
+BIN_PATH="/usr/bin/parch-zram"
+SERVICE_PATH="/etc/systemd/system/parch-zram.service"
 
-#add line before exit 0
-#sudo vi /etc/rc.local -c 'normal GO/usr/bin/zram.sh &' -c ':wq'
-
-#add systemd service
-
-sudo tee /etc/systemd/system/zram.service <<-'EOF'
-[Unit]
-Description=zram Service
-;After=network-online.target
-;Wants=network-online.target systemd-networkd-wait-online.service
-
-[Service]
-Type=simple
-ExecStart=/usr/bin/zram.sh
-
-[Install]
-WantedBy=multi-user.target
-EOF
+sudo wget -O "$BIN_PATH" "$REPO_URL/zram.sh"
+sudo chmod +x "$BIN_PATH"
+sudo wget -O "$SERVICE_PATH" "$REPO_URL/parch-zram.service"
 
 sudo systemctl daemon-reload
-sudo systemctl enable zram.service
+sudo systemctl enable --now parch-zram.service
